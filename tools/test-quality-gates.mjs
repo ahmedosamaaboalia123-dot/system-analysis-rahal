@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { stripVTControlCharacters } from 'node:util';
 import { verifyJobs } from './aggregate-jobs.mjs';
-import { changedPaths, evaluate, git } from './check-ownership.mjs';
+import { changedPaths, evaluate, git, hasExactOwnerApproval } from './check-ownership.mjs';
 import { verifyScripts, verifyTestInputs } from './check-scripts.mjs';
 import { execute, json, pnpm, root } from './process.mjs';
 import { add, list, remove } from './worktrees.mjs';
@@ -84,15 +84,90 @@ for (const [id, role, path, expected] of ownershipCases) {
 
 test('OWN-10', () => {
   const policy = json(join(root, 'ownership.json'));
-  assert.match(
-    evaluate(['ownership.json'], policy, [], undefined, false).join('\n'),
-    /repository-owner review/,
-  );
+  for (const path of [
+    'ownership.json',
+    '.github/workflows/probe.yml',
+    'tools/check-ownership.mjs',
+    'tools/process.mjs',
+  ]) {
+    assert.match(
+      evaluate([path], policy, [], undefined, false).join('\n'),
+      /repository-owner review/,
+    );
+  }
 });
 
 test('OWN-11', () => {
   const policy = json(join(root, 'ownership.json'));
-  assert.deepEqual(evaluate(['ownership.json'], policy, [], undefined, true), []);
+  assert.deepEqual(
+    evaluate(
+      [
+        'ownership.json',
+        '.github/workflows/probe.yml',
+        'tools/check-ownership.mjs',
+        'tools/process.mjs',
+      ],
+      policy,
+      [],
+      undefined,
+      true,
+    ),
+    [],
+  );
+});
+
+test('OWN-12', () => {
+  const policy = json(join(root, 'ownership.json'));
+  const errors = evaluate(
+    ['ownership.json', 'backend/domains/identity/denied.ts'],
+    policy,
+    [],
+    undefined,
+    true,
+  );
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /backend\/domains\/identity\/denied\.ts/);
+});
+
+test('OWN-13', () => {
+  const policy = json(join(root, 'ownership.json'));
+  assert.deepEqual(evaluate(['tools/permitted.mjs'], policy, ['A7'], ['tools/**']), []);
+});
+
+test('OWN-14', () => {
+  const owner = 'repository-owner';
+  const head = 'a'.repeat(40);
+  const stale = 'b'.repeat(40);
+  assert.equal(
+    hasExactOwnerApproval(
+      [{ id: 1, state: 'APPROVED', commit_id: stale, user: { login: owner } }],
+      owner,
+      head,
+    ),
+    false,
+  );
+  assert.equal(
+    hasExactOwnerApproval(
+      [
+        { id: 1, state: 'APPROVED', commit_id: head, user: { login: owner } },
+        { id: 2, state: 'CHANGES_REQUESTED', commit_id: head, user: { login: owner } },
+      ],
+      owner,
+      head,
+    ),
+    false,
+  );
+  assert.equal(
+    hasExactOwnerApproval(
+      [
+        { id: 1, state: 'COMMENTED', commit_id: stale, user: { login: owner } },
+        { id: 2, state: 'APPROVED', commit_id: head, user: { login: owner } },
+      ],
+      owner,
+      head,
+    ),
+    true,
+  );
 });
 
 test('OWN-PR-CLI', () => {

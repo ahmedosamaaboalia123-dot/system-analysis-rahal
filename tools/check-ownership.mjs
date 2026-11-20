@@ -56,6 +56,14 @@ export function evaluate(paths, policy, roles, allowed, approved = false) {
   });
 }
 
+export function hasExactOwnerApproval(reviews, owner, head) {
+  const latest = reviews
+    .filter((review) => review.user?.login === owner && review.state !== 'COMMENTED')
+    .sort((left, right) => left.id - right.id)
+    .at(-1);
+  return latest?.state === 'APPROVED' && latest.commit_id === head;
+}
+
 async function main() {
   const [mode, base, head, checkout = root] = process.argv.slice(2);
   if (!mode) {
@@ -106,11 +114,7 @@ async function main() {
       throw new Error('Cannot verify repository-owner review');
     }
     const reviews = await response.json();
-    const latest = reviews
-      .filter((review) => review.user?.login === owner && review.state !== 'COMMENTED')
-      .sort((left, right) => left.id - right.id)
-      .at(-1);
-    approved = latest?.state === 'APPROVED' && latest.commit_id === head;
+    approved = hasExactOwnerApproval(reviews, owner, head);
   }
   const errors = paths.flatMap((path) => {
     if (policy.policyPaths.some((pattern) => matches(path, pattern))) {

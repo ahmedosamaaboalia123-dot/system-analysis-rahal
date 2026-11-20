@@ -108,5 +108,5 @@
       ]
     }
   ],
-  "policyPaths": ["ownership.json", ".github/**", "tools/check-ownership.mjs"]
+  "policyPaths": ["ownership.json", ".github/**", "tools/check-ownership.mjs", "tools/process.mjs"]
 }
