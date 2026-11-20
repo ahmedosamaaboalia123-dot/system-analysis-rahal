@@ -1,0 +1,45 @@
+name: S02 Trusted Ownership
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trusted-ownership:
+    name: S02_TRUSTED_OWNERSHIP
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 26.13.1
+          package-manager-cache: false
+      - name: Evaluate the PR with trusted base code and policy
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if ! git cat-file -e "$BASE_SHA:tools/check-ownership.mjs" ||
+             ! git cat-file -e "$BASE_SHA:tools/process.mjs" ||
+             ! git cat-file -e "$BASE_SHA:ownership.json"; then
+            echo "Trusted ownership base is absent; bootstrap requires explicit owner review" >&2
+            exit 1
+          fi
+          git worktree add --detach "$RUNNER_TEMP/s02-trusted-base" "$BASE_SHA"
+          node "$RUNNER_TEMP/s02-trusted-base/tools/check-ownership.mjs" \
+            --pr "$BASE_SHA" "$HEAD_SHA" "$GITHUB_WORKSPACE"
+      - name: Validate the trusted base on manual dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: node tools/check-ownership.mjs
