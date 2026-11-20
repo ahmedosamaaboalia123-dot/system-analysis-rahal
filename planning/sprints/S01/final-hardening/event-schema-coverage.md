@@ -1,0 +1,2 @@
+# Event Schema Coverage
+11 event-specific payload schemas created under packages/contracts/events/payloads/. Each requires entityId/state and constrains classification. Shared envelope remains required for event metadata and at-least-once/idempotent consumer semantics.

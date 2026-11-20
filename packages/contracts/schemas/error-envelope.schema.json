@@ -1,0 +1,32 @@
+{
+  "required": [
+    "code",
+    "message",
+    "correlationId",
+    "retryable"
+  ],
+  "title": "MADAR Error Envelope",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "details": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "code": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,15 @@
+{
+  "eventId": "evt_01",
+  "correlationId": "corr_01",
+  "payload": {
+    "status": "CONFIRMED",
+    "bookingId": "bkg_01"
+  },
+  "occurredAt": "2026-11-19T00:00:00Z",
+  "schemaVersion": "1.0.0",
+  "eventType": "booking.confirmed.v1",
+  "aggregate": {
+    "id": "bkg_01",
+    "type": "booking"
+  }
+}

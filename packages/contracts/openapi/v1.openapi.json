@@ -1,0 +1,2856 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "description": "S01 proposed contract baseline. Schemas are not production implementation.",
+    "version": "1.0.0-proposed",
+    "title": "MADAR V1 Contract Baseline"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.invalid"
+    }
+  ],
+  "paths": {
+    "/v1/auth/otp": {
+      "post": {
+        "operationId": "issueOtp",
+        "summary": "API-IAM-01",
+        "tags": [
+          "Identity"
+        ],
+        "x-madar-contract-id": "API-IAM-01",
+        "x-madar-owner-domain": "Identity",
+        "x-madar-owner-agent": "A1",
+        "x-madar-srs": [
+          "FR-IDN-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/issueOtpResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "x-madar-authorization": {
+          "actor": "Public unauthenticated caller",
+          "permission": "AUTH_OTP_REQUEST_OR_VERIFY",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/issueOtpRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/otp/verify": {
+      "post": {
+        "operationId": "verifyOtp",
+        "summary": "API-IAM-02",
+        "tags": [
+          "Identity"
+        ],
+        "x-madar-contract-id": "API-IAM-02",
+        "x-madar-owner-domain": "Identity",
+        "x-madar-owner-agent": "A1",
+        "x-madar-srs": [
+          "FR-IDN-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/verifyOtpResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "x-madar-authorization": {
+          "actor": "Public unauthenticated caller",
+          "permission": "AUTH_OTP_REQUEST_OR_VERIFY",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/verifyOtpRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/employees": {
+      "post": {
+        "operationId": "createEmployee",
+        "summary": "API-ADM-01",
+        "tags": [
+          "Identity"
+        ],
+        "x-madar-contract-id": "API-ADM-01",
+        "x-madar-owner-domain": "Identity",
+        "x-madar-owner-agent": "A1",
+        "x-madar-srs": [
+          "FR-IDN-008"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createEmployeeResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createEmployeeRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/vehicles": {
+      "post": {
+        "operationId": "registerVehicle",
+        "summary": "API-VEH-01",
+        "tags": [
+          "Vehicles"
+        ],
+        "x-madar-contract-id": "API-VEH-01",
+        "x-madar-owner-domain": "Vehicles",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-VEH-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerVehicleResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerVehicleRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/routes": {
+      "post": {
+        "operationId": "createRouteVersion",
+        "summary": "API-RTE-01",
+        "tags": [
+          "Routes"
+        ],
+        "x-madar-contract-id": "API-RTE-01",
+        "x-madar-owner-domain": "Routes",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-RTE-002"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createRouteVersionResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createRouteVersionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/stations/{stationId}/queue/check-ins": {
+      "post": {
+        "operationId": "queueCheckIn",
+        "summary": "API-STA-01",
+        "tags": [
+          "Stations/Queue"
+        ],
+        "x-madar-contract-id": "API-STA-01",
+        "x-madar-owner-domain": "Stations/Queue",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-STA-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/queueCheckInResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/queueCheckInRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "stationId"
+          }
+        ]
+      }
+    },
+    "/v1/queue/{entryId}/leave": {
+      "post": {
+        "operationId": "queueLeave",
+        "summary": "API-STA-02",
+        "tags": [
+          "Stations/Queue"
+        ],
+        "x-madar-contract-id": "API-STA-02",
+        "x-madar-owner-domain": "Stations/Queue",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-STA-010"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/queueLeaveResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/queueLeaveRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "entryId"
+          }
+        ]
+      }
+    },
+    "/v1/location/observations": {
+      "post": {
+        "operationId": "recordGpsObservation",
+        "summary": "API-LOC-01",
+        "tags": [
+          "Location"
+        ],
+        "x-madar-contract-id": "API-LOC-01",
+        "x-madar-owner-domain": "Location",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-LOC-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recordGpsObservationResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/recordGpsObservationRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bookings/holds": {
+      "post": {
+        "operationId": "holdSeat",
+        "summary": "API-BKG-01",
+        "tags": [
+          "Booking"
+        ],
+        "x-madar-contract-id": "API-BKG-01",
+        "x-madar-owner-domain": "Booking",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-BKG-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/holdSeatResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/holdSeatRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bookings/{bookingId}/confirm": {
+      "post": {
+        "operationId": "confirmBooking",
+        "summary": "API-BKG-02",
+        "tags": [
+          "Booking"
+        ],
+        "x-madar-contract-id": "API-BKG-02",
+        "x-madar-owner-domain": "Booking",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-BKG-005"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/confirmBookingResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/confirmBookingRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "bookingId"
+          }
+        ]
+      }
+    },
+    "/v1/bookings/{bookingId}/cancel": {
+      "post": {
+        "operationId": "cancelBooking",
+        "summary": "API-BKG-03",
+        "tags": [
+          "Booking"
+        ],
+        "x-madar-contract-id": "API-BKG-03",
+        "x-madar-owner-domain": "Booking",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-BKG-009"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cancelBookingResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cancelBookingRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "bookingId"
+          }
+        ]
+      }
+    },
+    "/v1/taxi/offers/{offerId}/accept": {
+      "post": {
+        "operationId": "acceptTaxiOffer",
+        "summary": "API-TAX-01",
+        "tags": [
+          "Booking"
+        ],
+        "x-madar-contract-id": "API-TAX-01",
+        "x-madar-owner-domain": "Booking",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-BKG-013"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/acceptTaxiOfferResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/acceptTaxiOfferRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "offerId"
+          }
+        ]
+      }
+    },
+    "/v1/taxi/qr/{token}/activate": {
+      "post": {
+        "operationId": "activateStreetQr",
+        "summary": "API-TAX-02",
+        "tags": [
+          "Booking"
+        ],
+        "x-madar-contract-id": "API-TAX-02",
+        "x-madar-owner-domain": "Booking",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-BKG-014"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/activateStreetQrResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/activateStreetQrRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "token"
+          }
+        ]
+      }
+    },
+    "/v1/taxi/trips/{tripId}/finish": {
+      "post": {
+        "operationId": "finishTaxiTrip",
+        "summary": "API-TAX-03",
+        "tags": [
+          "Trips"
+        ],
+        "x-madar-contract-id": "API-TAX-03",
+        "x-madar-owner-domain": "Trips",
+        "x-madar-owner-agent": "A2",
+        "x-madar-srs": [
+          "FR-BKG-016"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/finishTaxiTripResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/finishTaxiTripRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "tripId"
+          }
+        ]
+      }
+    },
+    "/v1/pricing/versions": {
+      "post": {
+        "operationId": "publishPriceVersion",
+        "summary": "API-PRC-01",
+        "tags": [
+          "Pricing"
+        ],
+        "x-madar-contract-id": "API-PRC-01",
+        "x-madar-owner-domain": "Pricing",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-PRC-002"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/publishPriceVersionResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/publishPriceVersionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/wallet/payments": {
+      "post": {
+        "operationId": "walletPayment",
+        "summary": "API-WLT-01",
+        "tags": [
+          "Wallet"
+        ],
+        "x-madar-contract-id": "API-WLT-01",
+        "x-madar-owner-domain": "Wallet",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-WLT-007"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/walletPaymentResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/walletPaymentRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/wallet/withdrawals": {
+      "post": {
+        "operationId": "requestWithdrawal",
+        "summary": "API-WLT-02",
+        "tags": [
+          "Wallet"
+        ],
+        "x-madar-contract-id": "API-WLT-02",
+        "x-madar-owner-domain": "Wallet",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-WLT-008"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/requestWithdrawalResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/requestWithdrawalRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/wallet/withdrawals/{withdrawalId}/approve": {
+      "post": {
+        "operationId": "approveWithdrawal",
+        "summary": "API-WLT-03",
+        "tags": [
+          "Wallet"
+        ],
+        "x-madar-contract-id": "API-WLT-03",
+        "x-madar-owner-domain": "Wallet",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-WLT-009"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/approveWithdrawalResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/approveWithdrawalRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "withdrawalId"
+          }
+        ]
+      }
+    },
+    "/v1/complaints": {
+      "post": {
+        "operationId": "submitComplaint",
+        "summary": "API-COM-01",
+        "tags": [
+          "Complaints"
+        ],
+        "x-madar-contract-id": "API-COM-01",
+        "x-madar-owner-domain": "Complaints",
+        "x-madar-owner-agent": "A1",
+        "x-madar-srs": [
+          "FR-COM-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/submitComplaintResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/submitComplaintRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/compliance/cases/{caseId}/decisions": {
+      "post": {
+        "operationId": "recordComplianceDecision",
+        "summary": "API-CMP-01",
+        "tags": [
+          "Compliance"
+        ],
+        "x-madar-contract-id": "API-CMP-01",
+        "x-madar-owner-domain": "Compliance",
+        "x-madar-owner-agent": "A1",
+        "x-madar-srs": [
+          "FR-CMP-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recordComplianceDecisionResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/recordComplianceDecisionRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "caseId"
+          }
+        ]
+      }
+    },
+    "/v1/investigations/{caseId}/evidence": {
+      "post": {
+        "operationId": "registerEvidence",
+        "summary": "API-INV-01",
+        "tags": [
+          "Investigation"
+        ],
+        "x-madar-contract-id": "API-INV-01",
+        "x-madar-owner-domain": "Investigation",
+        "x-madar-owner-agent": "A1",
+        "x-madar-srs": [
+          "FR-INV-002"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerEvidenceResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerEvidenceRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "caseId"
+          }
+        ]
+      }
+    },
+    "/v1/platform/employee-signals": {
+      "post": {
+        "operationId": "recordEmployeeSignal",
+        "summary": "API-PLT-01",
+        "tags": [
+          "Platform Management"
+        ],
+        "x-madar-contract-id": "API-PLT-01",
+        "x-madar-owner-domain": "Platform Management",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-PLT-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recordEmployeeSignalResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/recordEmployeeSignalRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tasks/{taskId}/complete": {
+      "post": {
+        "operationId": "completeTask",
+        "summary": "API-TSK-01",
+        "tags": [
+          "Tasks"
+        ],
+        "x-madar-contract-id": "API-TSK-01",
+        "x-madar-owner-domain": "Tasks",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-TSK-005"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Idempotency-Key required; same key/different request = 409",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/completeTaskResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/completeTaskRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "required": true,
+            "name": "taskId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "operationId": "listNotifications",
+        "summary": "API-NTF-01",
+        "tags": [
+          "Notifications"
+        ],
+        "x-madar-contract-id": "API-NTF-01",
+        "x-madar-owner-domain": "Notifications",
+        "x-madar-owner-agent": "A3",
+        "x-madar-srs": [
+          "FR-NTF-006"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Not applicable",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/listNotificationsResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        }
+      }
+    },
+    "/v1/audit/events": {
+      "get": {
+        "operationId": "queryAuditLog",
+        "summary": "API-AUD-01",
+        "tags": [
+          "Audit"
+        ],
+        "x-madar-contract-id": "API-AUD-01",
+        "x-madar-owner-domain": "Audit",
+        "x-madar-owner-agent": "A7",
+        "x-madar-srs": [
+          "FR-AUD-001"
+        ],
+        "x-authorization-scope": "Subject + Action + Resource + Organization Scope + Context",
+        "x-idempotency": "Not applicable",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "required": true,
+            "name": "X-Correlation-ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/queryAuditLogResponse"
+                }
+              }
+            },
+            "description": "Success; resourceId/state/version/serverTime/correlationId as applicable"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "503": {
+            "$ref": "#/components/responses/DependencyFailure"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-madar-authorization": {
+          "actor": "Authenticated authorized principal",
+          "permission": "Domain-specific permission",
+          "organizationScope": "Subject + Action + Resource + Organization Scope + Context",
+          "resourceScope": "Explicit resource relation required",
+          "crossTenant": "DENY"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorEnvelope": {
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "correlationId",
+          "retryable"
+        ],
+        "properties": {
+          "details": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuccessEnvelope": {
+        "type": "object",
+        "required": [
+          "correlationId"
+        ],
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "serverTime": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      },
+      "CommandRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedVersion": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        }
+      },
+      "CommandResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId"
+        ],
+        "properties": {
+          "state": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "resourceId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "issueOtpRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "phone"
+        ],
+        "properties": {
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "verifyOtpRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "phone",
+          "verificationCode"
+        ],
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "verificationCode": {
+            "type": "string"
+          }
+        }
+      },
+      "createEmployeeRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "phone",
+          "employeeRole"
+        ],
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "employeeRole": {
+            "type": "string"
+          }
+        }
+      },
+      "registerVehicleRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "plateNumber",
+          "vehicleType"
+        ],
+        "properties": {
+          "plateNumber": {
+            "type": "string"
+          },
+          "vehicleType": {
+            "type": "string"
+          }
+        }
+      },
+      "createRouteVersionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "routeId",
+          "stops"
+        ],
+        "properties": {
+          "routeId": {
+            "type": "string"
+          },
+          "stops": {
+            "type": "array"
+          }
+        }
+      },
+      "queueCheckInRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "vehicleId",
+          "driverId"
+        ],
+        "properties": {
+          "vehicleId": {
+            "type": "string"
+          },
+          "driverId": {
+            "type": "string"
+          }
+        }
+      },
+      "queueLeaveRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reason"
+        ],
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "recordGpsObservationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entityId",
+          "observedAt",
+          "latitude",
+          "longitude"
+        ],
+        "properties": {
+          "longitude": {
+            "type": "number"
+          },
+          "entityId": {
+            "type": "string"
+          },
+          "observedAt": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          }
+        }
+      },
+      "holdSeatRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tripId",
+          "originStopId",
+          "destinationStopId"
+        ],
+        "properties": {
+          "originStopId": {
+            "type": "string"
+          },
+          "tripId": {
+            "type": "string"
+          },
+          "destinationStopId": {
+            "type": "string"
+          }
+        }
+      },
+      "confirmBookingRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "paymentReference"
+        ],
+        "properties": {
+          "paymentReference": {
+            "type": "string"
+          }
+        }
+      },
+      "cancelBookingRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reason"
+        ],
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "acceptTaxiOfferRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "driverId"
+        ],
+        "properties": {
+          "driverId": {
+            "type": "string"
+          }
+        }
+      },
+      "activateStreetQrRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "destination"
+        ],
+        "properties": {
+          "destination": {
+            "type": "string"
+          }
+        }
+      },
+      "finishTaxiTripRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "completedAt"
+        ],
+        "properties": {
+          "completedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "publishPriceVersionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pricingScope",
+          "effectiveAt"
+        ],
+        "properties": {
+          "pricingScope": {
+            "type": "string"
+          },
+          "effectiveAt": {
+            "type": "string"
+          }
+        }
+      },
+      "walletPaymentRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "amount",
+          "paymentReference"
+        ],
+        "properties": {
+          "paymentReference": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "requestWithdrawalRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "amount"
+        ],
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "approveWithdrawalRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decision"
+        ],
+        "properties": {
+          "decision": {
+            "type": "string"
+          }
+        }
+      },
+      "submitComplaintRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "subjectType",
+          "subjectId",
+          "category"
+        ],
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "subjectId": {
+            "type": "string"
+          },
+          "subjectType": {
+            "type": "string"
+          }
+        }
+      },
+      "recordComplianceDecisionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decision"
+        ],
+        "properties": {
+          "decision": {
+            "type": "string"
+          }
+        }
+      },
+      "registerEvidenceRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidenceReference",
+          "contentHash"
+        ],
+        "properties": {
+          "contentHash": {
+            "type": "string"
+          },
+          "evidenceReference": {
+            "type": "string"
+          }
+        }
+      },
+      "recordEmployeeSignalRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "employeeId",
+          "signalType"
+        ],
+        "properties": {
+          "signalType": {
+            "type": "string"
+          },
+          "employeeId": {
+            "type": "string"
+          }
+        }
+      },
+      "completeTaskRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "completedAt"
+        ],
+        "properties": {
+          "completedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "issueOtpResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "verifyOtpResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "createEmployeeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "registerVehicleResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "createRouteVersionResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "queueCheckInResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "queueLeaveResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "recordGpsObservationResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "holdSeatResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "bookingOrTripReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "bookingOrTripReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "confirmBookingResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "bookingOrTripReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "bookingOrTripReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "cancelBookingResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "bookingOrTripReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "bookingOrTripReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "acceptTaxiOfferResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "bookingOrTripReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "bookingOrTripReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "activateStreetQrResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "finishTaxiTripResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "bookingOrTripReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "bookingOrTripReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "publishPriceVersionResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "walletPaymentResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "financialOperationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "financialOperationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "requestWithdrawalResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "financialOperationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "financialOperationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "approveWithdrawalResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "financialOperationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "financialOperationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "submitComplaintResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "caseOrEvidenceReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "caseOrEvidenceReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "recordComplianceDecisionResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "caseOrEvidenceReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "caseOrEvidenceReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "registerEvidenceResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "caseOrEvidenceReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "caseOrEvidenceReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "recordEmployeeSignalResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "completeTaskResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "listNotificationsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "queryAuditLogResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "operationReference"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "operationReference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "responses": {
+      "ValidationError": {
+        "description": "Safe validation error"
+      },
+      "DependencyFailure": {
+        "description": "Critical dependency unavailable"
+      },
+      "Unauthorized": {
+        "description": "Authentication required"
+      },
+      "Forbidden": {
+        "description": "Authorization denied"
+      },
+      "Conflict": {
+        "description": "State, idempotency, or concurrency conflict"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "Authentication mechanism only; authorization is x-madar-authorization.",
+        "bearerFormat": "JWT",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

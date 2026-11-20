@@ -1,0 +1,5 @@
+TaskID,TaskName,RunbookReference,Classification,Dependencies,Risks,AllowedNow,Reason,RequiredGate
+S02-F01,CI configuration scaffold,V5 S02,SAFE_FOUNDATION,None,No remote runner,YES,Does not consume provisional contracts,PROVISIONAL_FOUNDATION_READY
+S02-F02,Local test command documentation,V5 S02,SAFE_FOUNDATION,None,False confidence if semantic gates omitted,YES,Commands remain local and fail on error,PROVISIONAL_FOUNDATION_READY
+S02-F03,Contract consumer implementation,V5 S02,CONTRACT_DEPENDENT,S01-C01;S01-C02;S01-C03,Consumer binds unresolved semantics,NO,S01 contracts provisional,S01 TECHNICALLY_ACCEPTED
+S02-F04,Production financial/booking/security flows,V5 S02,HIGH_RISK,S01 acceptance,Incorrect business behavior,NO,Forbidden under provisional handoff,S01 acceptance and later sprint gates

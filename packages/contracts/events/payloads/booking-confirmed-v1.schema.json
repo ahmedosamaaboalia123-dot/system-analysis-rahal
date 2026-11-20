@@ -1,0 +1,28 @@
+{
+  "required": [
+    "entityId",
+    "state"
+  ],
+  "properties": {
+    "entityId": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "state": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "classification": {
+      "enum": [
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "booking.confirmed.v1",
+  "additionalProperties": false
+}

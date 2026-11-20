@@ -1,0 +1,3 @@
+# Baseline Audit
+
+Date: 2026-11-20. Reference SHA-256 values recorded before remediation: SRS 8B6CBFF5D2EF318A88B3E328A246CE9B44EFFD4661B3FEBFC4AABD3A8CDED2D7; V5 1EFF7D72426AB0DA3049BB41FC9A602DBEE18C63F5C0B4D95C540EA57BB0FD4E. Baseline OpenAPI: 25 operations; event envelope schema and error schema: 2; fixtures: 2. No S01 evidence was deleted. Git was initialized locally without a remote or commit.

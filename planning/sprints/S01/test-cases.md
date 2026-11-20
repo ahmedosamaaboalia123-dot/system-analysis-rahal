@@ -1,0 +1,3 @@
+# حالات اختبار S01
+
+CONTRACT-01 parse OpenAPI; CONTRACT-02 parse JSON schemas; CONTRACT-03 validate every operation owner/source/ID; CONTRACT-04 fixtures JSON and no secret markers; COMPAT-01 baseline has all operationIds; COMPAT-02 in-memory removal of operationId is detected; COMPAT-03 baseline remains unchanged; BOUNDARY-01 allowed public contract import is allowed; BOUNDARY-02 internal domain import is rejected by rule specification. Runtime DB/auth/payment/outbox tests: NOT_RUN pending implementation.

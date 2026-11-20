@@ -1,0 +1,2 @@
+# OpenAPI Completeness
+All 25 operations reviewed. Every POST now has required JSON requestBody referencing CommandRequest; protected operations have bearerAuth and x-madar-authorization; public OTP operations are explicit. Success responses reference CommandResponse; errors remain mapped. Generic command schemas avoid unapproved business values, but operation-specific fields remain a future refinement.

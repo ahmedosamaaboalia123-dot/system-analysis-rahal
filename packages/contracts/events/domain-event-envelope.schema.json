@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "title": "MADAR Domain Event Envelope",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "aggregate": {
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "causationId": {
+      "type": "string"
+    },
+    "eventType": {
+      "enum": [
+        "identity.account.verified.v1",
+        "queue.entry.checked-in.v1",
+        "booking.hold.created.v1",
+        "booking.confirmed.v1",
+        "taxi.trip.completed.v1",
+        "wallet.ledger.posted.v1",
+        "withdrawal.requested.v1",
+        "complaint.submitted.v1",
+        "evidence.registered.v1",
+        "task.completed.v1",
+        "notification.created.v1"
+      ],
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "occurredAt": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "eventId": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "eventType",
+    "schemaVersion",
+    "occurredAt",
+    "correlationId",
+    "aggregate",
+    "payload"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

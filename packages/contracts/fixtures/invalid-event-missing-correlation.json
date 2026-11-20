@@ -1,0 +1,11 @@
+{
+  "eventId": "evt_bad",
+  "payload": {},
+  "occurredAt": "not-a-date",
+  "schemaVersion": "1.0.0",
+  "eventType": "booking.confirmed.v1",
+  "aggregate": {
+    "id": "bkg",
+    "type": "booking"
+  }
+}
