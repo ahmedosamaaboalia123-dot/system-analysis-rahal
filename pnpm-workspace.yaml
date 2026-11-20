@@ -1,0 +1,12 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+  - 'backend/*'
+  - 'backend/domains/*'
+  - 'backend/systems/*'
+strictPeerDependencies: true
+engineStrict: true
+strictSsl: true
+saveExact: true
+ignoreScripts: true
+nodeLinker: hoisted

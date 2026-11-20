@@ -26,3 +26,25 @@ A change needs REQ/BR references, permitted diff, tests/evidence, security and f
 ## Forbidden operations
 
 Do not alter the authoritative SRS/V5 without explicit user approval. Do not invent policy values, activation claims, production-provider success, government authorization, HA, or continuous PWA background GPS. Do not force-push, reset/clean destructively, delete user files, bypass reviews, or begin a dependent sprint before its gate.
+
+## S02 repository workflow
+
+- Startup checklist. Check the active branch, worktree and diff. Read the sprint ticket, applicable
+  requirements and `ownership.json`. Match the reviewed GitHub task grant to the intended scope.
+- Create one sibling worktree per agent with `node tools/worktrees.mjs add PATH a7/sprint-id`.
+  Use `list` and `report` to inspect active branches, dirty paths and conflicts. Removal requires
+  a clean linked worktree and explicit `--approved-clean`. A branch name is a local convention.
+- A7 integrates shared packages, tooling, CI and central configuration. A0 owns planning. A6 owns
+  QA tests and signs off independently. Domain and app agents use their assigned paths and obtain
+  a reviewed handoff before changes to another agent's paths.
+- Match `.node-version` and `packageManager`. Run `pnpm install --frozen-lockfile`,
+  `pnpm exec playwright install chromium`, then `pnpm verify:s02`. Use recursive workspace scripts
+  and local package filters from this root. CI checks formatting with `pnpm format:check`.
+- Attach command, commit SHA, exit code, artifact, positive and negative tests, and rollback or
+  handoff context. Require independent A6 evidence on the integrated revision. Separate the S02
+  foundation status from the S01 contract status.
+- Failure escalation. Keep a failing or skipped mandatory gate visible. Escalate policy changes
+  and missing permissions to the repository owner. Preserve the base revision's ownership policy
+  when assessing a PR. Bootstrap branch protection requires owner review.
+- V5 dependencies are S00 → S01 and S00 → S02. S01 + S02 → S03 requires both acceptance gates.
+- OPEN decisions retain their recorded status until the authorized decision owner approves them.

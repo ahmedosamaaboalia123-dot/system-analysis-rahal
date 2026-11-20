@@ -1,0 +1,110 @@
+name: S02 Foundation
+on:
+  pull_request:
+  push:
+    branches: ['s02/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  foundation:
+    name: ${{ matrix.os }} · ${{ matrix.check }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        check:
+          - check:workspace
+          - check:scripts
+          - typecheck
+          - lint
+          - format:check
+          - test:unit
+          - build
+          - check:boundaries
+          - check:security
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Bootstrap pinned pnpm
+        run: npm install --global pnpm@12.19.0
+      - name: Frozen install
+        run: pnpm install --frozen-lockfile
+      - run: pnpm run ${{ matrix.check }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ always() && matrix.check == 'test:unit' }}
+        with:
+          name: unit-${{ matrix.os }}
+          path: artifacts/s02/vitest.json
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Bootstrap pinned pnpm
+        run: npm install --global pnpm@12.19.0
+      - name: Frozen install
+        run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps --only-shell chromium
+      - run: pnpm build
+      - run: pnpm test:e2e
+      - run: pnpm test:negative
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: browser-and-negative-evidence
+          path: artifacts/s02
+  ownership:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Evaluate PR using trusted base policy and code
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git cat-file -e "$HEAD_SHA^{commit}"
+          git worktree add --detach "$RUNNER_TEMP/s02-trusted-base" "$BASE_SHA"
+          node "$RUNNER_TEMP/s02-trusted-base/tools/check-ownership.mjs" --pr "$BASE_SHA" "$HEAD_SHA" "$GITHUB_WORKSPACE"
+      - name: Verify local owner policy and controlled diff cases
+        if: github.event_name != 'pull_request'
+        run: |
+          node tools/check-ownership.mjs
+          node tools/test-quality-gates.mjs --ownership-only
+  quality:
+    name: S02_FOUNDATION_QUALITY
+    if: always()
+    needs: [foundation, browser, ownership]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - name: Require all foundation jobs
+        env:
+          S02_JOB_RESULTS: ${{ toJSON(needs) }}
+          S02_REQUIRED_JOBS: foundation,browser,ownership
+        run: node tools/aggregate-jobs.mjs

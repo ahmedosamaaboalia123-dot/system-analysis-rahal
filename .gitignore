@@ -17,3 +17,7 @@ coverage/
 Thumbs.db
 .idea/
 .vscode/
+artifacts/
+playwright-report/
+test-results/
+*.tsbuildinfo

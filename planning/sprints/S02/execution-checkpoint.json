@@ -1,0 +1,12 @@
+{
+  "sprint": "S02",
+  "status": "IN_PROGRESS",
+  "completedWorkPackages": ["WP-00"],
+  "currentWorkPackage": "WP-01",
+  "pendingWorkPackages": ["WP-01", "WP-02", "WP-03", "WP-04", "WP-05", "WP-06", "WP-07", "WP-08", "WP-09", "WP-10", "WP-11", "WP-12", "WP-13", "WP-14", "WP-15", "WP-16", "WP-17"],
+  "changedFiles": ["package.json", "pnpm-workspace.yaml", "ownership.json", "tools/", "packages/s02-fixture/", "tests/", ".github/", "planning/sprints/S02/", "AGENTS.md"],
+  "executedTests": ["S00 gate and baseline audit", "OWN-01 through OWN-09 on temporary Git repositories"],
+  "failedTests": [],
+  "blockedItems": ["Pinned runtime and package manager are being bootstrapped from integrity-verified packages"],
+  "nextExactCommand": "pnpm install --frozen-lockfile"
+}
