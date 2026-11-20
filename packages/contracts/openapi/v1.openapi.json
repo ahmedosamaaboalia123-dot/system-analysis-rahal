@@ -2327,504 +2327,954 @@
         }
       },
       "issueOtpResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "verifyOtpResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "createEmployeeResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "registerVehicleResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "createRouteVersionResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "queueCheckInResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "queueLeaveResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "recordGpsObservationResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "holdSeatResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "bookingOrTripReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "bookingOrTripReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "bookingOrTripReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bookingOrTripReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "confirmBookingResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "bookingOrTripReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "bookingOrTripReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "bookingOrTripReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bookingOrTripReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "cancelBookingResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "bookingOrTripReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "bookingOrTripReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "bookingOrTripReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bookingOrTripReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "acceptTaxiOfferResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "bookingOrTripReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "bookingOrTripReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "bookingOrTripReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bookingOrTripReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "activateStreetQrResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "finishTaxiTripResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "bookingOrTripReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "bookingOrTripReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "bookingOrTripReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bookingOrTripReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "publishPriceVersionResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "walletPaymentResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "financialOperationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "financialOperationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "financialOperationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "financialOperationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "requestWithdrawalResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "financialOperationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "financialOperationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "financialOperationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "financialOperationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "approveWithdrawalResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "financialOperationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "financialOperationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "financialOperationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "financialOperationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "submitComplaintResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "caseOrEvidenceReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "caseOrEvidenceReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "caseOrEvidenceReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "caseOrEvidenceReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "recordComplianceDecisionResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "caseOrEvidenceReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "caseOrEvidenceReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "caseOrEvidenceReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "caseOrEvidenceReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "registerEvidenceResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "caseOrEvidenceReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "caseOrEvidenceReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "caseOrEvidenceReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "caseOrEvidenceReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "recordEmployeeSignalResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "completeTaskResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "listNotificationsResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       },
       "queryAuditLogResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommandResponse"
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "state",
+          "version",
+          "serverTime",
+          "correlationId",
+          "operationReference"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "minLength": 1
           },
-          {
-            "type": "object",
-            "required": [
-              "operationReference"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "operationReference": {
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationReference": {
+            "type": "string",
+            "minLength": 1
           }
-        ]
+        }
       }
     },
     "responses": {
