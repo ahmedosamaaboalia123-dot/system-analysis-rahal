@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "rules": [
+    { "owner": "A0", "paths": ["planning/**", "docs/specs/**", "docs/architecture/**"] },
+    {
+      "owner": "A1",
+      "paths": [
+        "backend/domains/identity/**",
+        "backend/domains/organization/**",
+        "backend/systems/complaints/**",
+        "backend/systems/compliance/**",
+        "backend/systems/investigation/**"
+      ]
+    },
+    {
+      "owner": "A2",
+      "paths": [
+        "backend/domains/vehicles/**",
+        "backend/domains/routes/**",
+        "backend/domains/stations/**",
+        "backend/domains/trips/**",
+        "backend/systems/location/**",
+        "backend/systems/booking/**"
+      ]
+    },
+    {
+      "owner": "A3",
+      "paths": [
+        "backend/systems/wallet/**",
+        "backend/systems/platform-management/**",
+        "backend/domains/pricing/**",
+        "backend/domains/tasks/**",
+        "backend/domains/notifications/**"
+      ]
+    },
+    { "owner": "A4", "paths": ["apps/passenger-pwa/**", "apps/driver-pwa/**"] },
+    {
+      "owner": "A5",
+      "paths": [
+        "apps/station-web/**",
+        "apps/admin-web/**",
+        "apps/station-electron/**",
+        "apps/admin-electron/**"
+      ]
+    },
+    { "owner": "A6", "paths": ["tests/**", "qa/**", "security/reports/**"] },
+    {
+      "owner": "A7",
+      "paths": [
+        "packages/contracts/**",
+        "packages/s02-fixture/**",
+        "tools/**",
+        "infrastructure/**",
+        "database/**",
+        ".github/**",
+        "apps/README.md",
+        "backend/README.md",
+        "AGENTS.md",
+        ".editorconfig",
+        ".gitattributes",
+        ".gitignore",
+        ".npmrc",
+        ".node-version",
+        ".prettierignore",
+        "package.json",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml",
+        "tsconfig.base.json",
+        "tsconfig.json",
+        "eslint.config.mjs",
+        "prettier.config.mjs",
+        "vitest.config.ts",
+        "playwright.config.ts",
+        "ownership.json"
+      ]
+    }
+  ],
+  "grants": [
+    {
+      "task": "S02",
+      "actor": "ahmedosamaaboalia123-dot",
+      "roles": ["A0", "A6", "A7"],
+      "paths": [
+        "planning/sprints/S02/**",
+        "tests/**",
+        "packages/s02-fixture/**",
+        "tools/**",
+        ".github/**",
+        "apps/README.md",
+        "backend/README.md",
+        "AGENTS.md",
+        ".editorconfig",
+        ".gitattributes",
+        ".gitignore",
+        ".npmrc",
+        ".node-version",
+        ".prettierignore",
+        "package.json",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml",
+        "tsconfig.base.json",
+        "tsconfig.json",
+        "eslint.config.mjs",
+        "prettier.config.mjs",
+        "vitest.config.ts",
+        "playwright.config.ts",
+        "ownership.json"
+      ]
+    }
+  ],
+  "policyPaths": ["ownership.json", ".github/**", "tools/check-ownership.mjs"]
+}
