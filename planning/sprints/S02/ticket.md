@@ -2,7 +2,10 @@
 
 Scope: A0 owns S02 planning/architecture evidence only. A7 owns root tooling, workspace, CI, infrastructure and shared packages. A6 owns independent QA. This branch must not alter SRS, V5, contracts, product domains, or migrations.
 
-Primary requirements: preserve modular-monolith boundaries, contract-first integration, source-of-truth ownership, agent paths, and explicit S01/S02→S03 dependency.
+Primary requirements: `DEP-005` for CI/CD with TypeScript, lint, and tests; `NFR-X11` for
+versioned API contract testing; and `NFR-X14` for extractable systems without redefining business
+contracts. Preserve modular-monolith boundaries, contract-first integration, source-of-truth
+ownership, agent paths, and the explicit S01/S02→S03 dependency.
 
 Source SHA-256 at entry:
 

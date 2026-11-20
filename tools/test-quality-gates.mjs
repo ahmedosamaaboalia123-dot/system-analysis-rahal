@@ -82,6 +82,19 @@ for (const [id, role, path, expected] of ownershipCases) {
   });
 }
 
+test('OWN-10', () => {
+  const policy = json(join(root, 'ownership.json'));
+  assert.match(
+    evaluate(['ownership.json'], policy, [], undefined, false).join('\n'),
+    /repository-owner review/,
+  );
+});
+
+test('OWN-11', () => {
+  const policy = json(join(root, 'ownership.json'));
+  assert.deepEqual(evaluate(['ownership.json'], policy, [], undefined, true), []);
+});
+
 test('OWN-PR-CLI', () => {
   const directory = repository('trusted-pr-cli');
   const policy = json(join(root, 'ownership.json'));

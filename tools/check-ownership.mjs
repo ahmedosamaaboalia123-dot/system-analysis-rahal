@@ -43,14 +43,14 @@ export function evaluate(paths, policy, roles, allowed, approved = false) {
       rule.paths.some((pattern) => matches(path, pattern)),
     );
     if (rules.length !== 1) return [`${path}: missing or ambiguous owner`];
+    if (policy.policyPaths?.some((pattern) => matches(path, pattern))) {
+      return approved ? [] : [`${path}: enforcement change requires repository-owner review`];
+    }
     if (
       !roles.includes(rules[0].owner) ||
       (allowed && !allowed.some((pattern) => matches(path, pattern)))
     ) {
       return [`${path}: change outside authorized scope (${rules[0].owner})`];
-    }
-    if (policy.policyPaths?.some((pattern) => matches(path, pattern)) && !approved) {
-      return [`${path}: enforcement change requires repository-owner review`];
     }
     return [];
   });
@@ -113,6 +113,9 @@ async function main() {
     approved = latest?.state === 'APPROVED' && latest.commit_id === head;
   }
   const errors = paths.flatMap((path) => {
+    if (policy.policyPaths.some((pattern) => matches(path, pattern))) {
+      return evaluate([path], policy, [], undefined, approved);
+    }
     if (
       grants.some((grant) => !evaluate([path], policy, grant.roles, grant.paths, approved).length)
     )
