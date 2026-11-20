@@ -6,4 +6,4 @@
 *.json text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
-docs/MADAR_V1_*_Arabic.md text eol=lf
+*.md text eol=lf
