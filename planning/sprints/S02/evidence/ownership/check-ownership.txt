@@ -1,0 +1,2 @@
+$ node tools/check-ownership.mjs
+Ownership manifest: 53 exclusive patterns

@@ -1,0 +1,2 @@
+$ node tools/check-scripts.mjs
+Mandatory script inputs verified

@@ -4,7 +4,10 @@
 |---|---|---|---|---|
 | R-S02-01 | S01 unresolved contract findings incorrectly treated as production-approved | HIGH | A0/A7 | Separate `S01_CONTRACT_QUALITY` from S02 foundation result |
 | R-S02-02 | Tooling foundation introduces product/domain logic | HIGH | A7/A0 | A0 diff review; fixture marked test-only |
-| R-S02-03 | CI workflow exists without actual remote execution | HIGH | A7/Owner | Report `NOT_RUN` until actual run URL/evidence |
+| R-S02-03 | CI workflow exists without actual remote execution | CLOSED | A7/Owner | Run 44739501941 passed all jobs and aggregate gate at `2fce400` |
 | R-S02-04 | Shared root/config path ownership conflicts | MEDIUM | A7 | Ownership manifest/CODEOWNERS and handoff |
 | R-S02-05 | Node/pnpm version requirement unavailable | MEDIUM | A7 | Record registry evidence; do not silently substitute |
 | R-S02-06 | S03 starts before S01+S02 gates | CRITICAL | A0/Owner | Explicit stop condition and acceptance matrix |
+| R-S02-07 | Trusted PR ownership bootstrap is pending on unprotected `main` | HIGH | Repository owner | Review bootstrap, apply ruleset, then verify authorized and rejected PR diffs |
+| R-S02-08 | A6 review environment denies loopback connections and temporary Git writes | HIGH | A6 | Re-run the checked-in evidence command from a reviewer-owned environment with both permissions |
+| R-S02-09 | pnpm concurrent destination renames fail at the current Desktop path | MEDIUM | A7 | Use the verified short-path clean clone with pinned tools and frozen lockfile |

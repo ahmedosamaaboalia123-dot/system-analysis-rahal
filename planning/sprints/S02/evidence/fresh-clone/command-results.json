@@ -1,0 +1,146 @@
+[
+  {
+    "group": "environment",
+    "name": "head",
+    "command": "git -c safe.directory=C:/Users/hp/AppData/Local/Temp/madar-s02-verified-color rev-parse HEAD",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "environment/head.log"
+  },
+  {
+    "group": "environment",
+    "name": "node",
+    "command": "node --version",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "environment/node.log"
+  },
+  {
+    "group": "environment",
+    "name": "pnpm",
+    "command": "pnpm --version",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "environment/pnpm.log"
+  },
+  {
+    "group": "installation",
+    "name": "frozen",
+    "command": "pnpm install --frozen-lockfile",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "installation/frozen.log"
+  },
+  {
+    "group": "workspace",
+    "name": "check-workspace",
+    "command": "pnpm run check:workspace",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "workspace/check-workspace.log"
+  },
+  {
+    "group": "workspace",
+    "name": "check-scripts",
+    "command": "pnpm run check:scripts",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "workspace/check-scripts.log"
+  },
+  {
+    "group": "ownership",
+    "name": "check-ownership",
+    "command": "pnpm run check:ownership",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "ownership/check-ownership.log"
+  },
+  {
+    "group": "typescript",
+    "name": "typecheck",
+    "command": "pnpm run typecheck",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "typescript/typecheck.log"
+  },
+  {
+    "group": "lint",
+    "name": "lint",
+    "command": "pnpm run lint",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "lint/lint.log"
+  },
+  {
+    "group": "format",
+    "name": "format-check",
+    "command": "pnpm run format:check",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "format/format-check.log"
+  },
+  {
+    "group": "unit",
+    "name": "test-unit",
+    "command": "pnpm run test:unit",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "unit/test-unit.log"
+  },
+  {
+    "group": "workspace",
+    "name": "build",
+    "command": "pnpm run build",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "workspace/build.log"
+  },
+  {
+    "group": "browser",
+    "name": "test-e2e",
+    "command": "pnpm run test:e2e",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "browser/test-e2e.log"
+  },
+  {
+    "group": "boundaries",
+    "name": "check-boundaries",
+    "command": "pnpm run check:boundaries",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "boundaries/check-boundaries.log"
+  },
+  {
+    "group": "security",
+    "name": "check-security",
+    "command": "pnpm run check:security",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "security/check-security.log"
+  },
+  {
+    "group": "negative-tests",
+    "name": "test-negative",
+    "command": "pnpm run test:negative",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "negative-tests/test-negative.log"
+  },
+  {
+    "group": "worktrees",
+    "name": "listing",
+    "command": "node tools/worktrees.mjs list",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "worktrees/listing.log"
+  },
+  {
+    "group": "workspace",
+    "name": "governance",
+    "command": "node tools/verify-governance.mjs",
+    "exitCode": 0,
+    "result": "PASS",
+    "log": "workspace/governance.log"
+  }
+]

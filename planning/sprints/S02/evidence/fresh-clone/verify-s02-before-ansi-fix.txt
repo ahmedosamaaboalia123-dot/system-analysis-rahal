@@ -1,0 +1,101 @@
+$ node tools/run-quality-gates.mjs
+$ node tools/check-workspace.mjs
+Workspace verified: @madar/workspace, @madar/s02-fixture
+S02_FOUNDATION_QUALITY check:workspace PASS
+$ node tools/check-scripts.mjs
+Mandatory script inputs verified
+S02_FOUNDATION_QUALITY check:scripts PASS
+$ node tools/check-ownership.mjs
+Ownership manifest: 53 exclusive patterns
+S02_FOUNDATION_QUALITY check:ownership PASS
+$ node tools/check-security.mjs
+Security scan checked 150 pathnames and workflow policies
+S02_FOUNDATION_QUALITY check:security PASS
+$ tsc -p tsconfig.json && pnpm -r --if-present typecheck
+$ tsc -p tsconfig.json --noEmit
+S02_FOUNDATION_QUALITY typecheck PASS
+$ eslint . --max-warnings 0 && node tools/check-boundaries.mjs
+Boundaries: 3 files, 6 imports, repository madar-s02-final-clone
+S02_FOUNDATION_QUALITY lint PASS
+$ prettier . --check
+Checking formatting...
+All matched files use Prettier code style!
+S02_FOUNDATION_QUALITY format:check PASS
+$ node tools/check-scripts.mjs --test-inputs && vitest run
+Mandatory script inputs verified
+
+ RUN  v5.1.1 C:/Users/hp/AppData/Local/Temp/madar-s02-final-clone
+
+ ✓ packages/s02-fixture/index.test.ts (6 tests) 7ms
+ ✓ tests/unit/s02-fixture-contract.test.ts (4 tests) 180ms
+
+ Test Files  2 passed (2)
+      Tests  10 passed (10)
+   Start at  14:49:00
+   Duration  640ms (tests 55%, import 29%, transform 10%, worker 6%)
+
+JSON report written to C:/Users/hp/AppData/Local/Temp/madar-s02-final-clone/artifacts/s02/vitest.json
+S02_FOUNDATION_QUALITY test:unit PASS
+$ pnpm -r --if-present build && node tools/check-build.mjs
+$ tsc -p tsconfig.build.json
+Compiled workspace import verified
+S02_FOUNDATION_QUALITY build PASS
+$ playwright test
+[WebServer] (node:16380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:16736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\s02-fixture.spec.ts:4:3 › S02 test fixture › renders the explicitly test-only page and increments with a pointer (598ms)
+  ok 2 [chromium] › tests\e2e\s02-fixture.spec.ts:18:3 › S02 test fixture › increment control is keyboard accessible (399ms)
+  ok 3 [chromium] › tests\e2e\s02-fixture.spec.ts:26:3 › S02 test fixture › unknown browser path provides a safe 404 response (328ms)
+  ok 4 [chromium] › tests\e2e\s02-fixture.spec.ts:32:3 › S02 test fixture › exposes test-only mock data and rejects unsupported methods safely (71ms)
+
+  4 passed (3.7s)
+S02_FOUNDATION_QUALITY test:e2e PASS
+$ node tools/test-quality-gates.mjs
+{"id":"OWN-01","status":"PASS"}
+{"id":"OWN-02","status":"PASS"}
+{"id":"OWN-03","status":"PASS"}
+{"id":"OWN-04","status":"PASS"}
+{"id":"OWN-05","status":"PASS"}
+{"id":"OWN-06","status":"PASS"}
+{"id":"OWN-07","status":"PASS"}
+{"id":"OWN-08","status":"PASS"}
+{"id":"OWN-09","status":"PASS"}
+{"id":"OWN-PR-CLI","status":"PASS"}
+{"id":"BND-01","status":"PASS"}
+{"id":"BND-02","status":"PASS"}
+{"id":"BND-03","status":"PASS"}
+{"id":"BND-04","status":"PASS"}
+{"id":"BND-05","status":"PASS"}
+{"id":"BND-06","status":"PASS"}
+{"id":"BND-07","status":"PASS"}
+{"id":"BND-08","status":"PASS"}
+{"id":"BND-09","status":"PASS"}
+{"id":"BND-10","status":"PASS"}
+{"id":"BND-POS","status":"PASS"}
+{"id":"S02-T09-AC","status":"PASS"}
+{"id":"AFP-S02-01","status":"PASS"}
+{"id":"AFP-S02-02","status":"PASS"}
+{"id":"AFP-S02-03","status":"PASS"}
+{"id":"UNIT-EXCEPTION","status":"PASS"}
+{"id":"AFP-S02-11","status":"PASS"}
+{"id":"AFP-S02-04","status":"PASS"}
+{"id":"AFP-S02-05","status":"PASS"}
+{"id":"TS-NULL","status":"PASS"}
+{"id":"TS-INDEX","status":"PASS"}
+{"id":"TS-ASSIGNMENT","status":"PASS"}
+{"id":"LINT-UNUSED","status":"PASS"}
+{"id":"LINT-ANY","status":"PASS"}
+{"id":"LINT-PARSE","status":"PASS"}
+{"id":"FORMAT-NEG","status":"PASS"}
+{"id":"AFP-S02-06","status":"PASS"}
+{"id":"AFP-S02-07","status":"PASS"}
+{"id":"AFP-S02-08","status":"PASS"}
+{"id":"AFP-S02-09","status":"PASS"}
+{"id":"AFP-S02-10","status":"PASS"}
+{"id":"AFP-S02-12","status":"PASS"}
+S02_FOUNDATION_QUALITY test:negative PASS

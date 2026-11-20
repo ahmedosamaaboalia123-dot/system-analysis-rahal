@@ -1,0 +1,6 @@
+[
+  {
+    "path": "C:/Users/hp/AppData/Local/Temp/madar-s02-verified-color",
+    "branch": "s02/monorepo-foundation"
+  }
+]

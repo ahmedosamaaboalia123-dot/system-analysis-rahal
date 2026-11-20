@@ -1,0 +1,4 @@
+$ eslint . --max-warnings 0 && node tools/check-boundaries.mjs
+(node:11944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Boundaries: 3 files, 6 imports, repository madar-s02-verified-color

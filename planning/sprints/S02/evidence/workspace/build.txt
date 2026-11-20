@@ -1,0 +1,3 @@
+$ pnpm -r --if-present build && node tools/check-build.mjs
+$ tsc -p tsconfig.build.json
+Compiled workspace import verified

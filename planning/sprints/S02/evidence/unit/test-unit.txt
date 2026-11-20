@@ -1,0 +1,20 @@
+$ node tools/check-scripts.mjs --test-inputs && vitest run
+Mandatory script inputs verified
+(node:1972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.1.1 C:/Users/hp/AppData/Local/Temp/madar-s02-verified-color
+
+(node:11912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ packages/s02-fixture/index.test.ts (6 tests) 8ms
+ ✓ tests/unit/s02-fixture-contract.test.ts (4 tests) 175ms
+
+ Test Files  2 passed (2)
+      Tests  10 passed (10)
+   Start at  14:53:47
+   Duration  858ms (tests 36%, transform 29%, import 27%, worker 8%)
+
+JSON report written to C:/Users/hp/AppData/Local/Temp/madar-s02-verified-color/artifacts/s02/vitest.json

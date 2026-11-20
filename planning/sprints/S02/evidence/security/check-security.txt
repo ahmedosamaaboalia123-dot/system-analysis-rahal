@@ -1,0 +1,2 @@
+$ node tools/check-security.mjs
+Security scan checked 150 pathnames and workflow policies

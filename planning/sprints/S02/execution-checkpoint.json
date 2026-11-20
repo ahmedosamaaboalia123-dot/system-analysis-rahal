@@ -1,12 +1,12 @@
 {
   "sprint": "S02",
-  "status": "IN_PROGRESS",
-  "completedWorkPackages": ["WP-00"],
-  "currentWorkPackage": "WP-01",
-  "pendingWorkPackages": ["WP-01", "WP-02", "WP-03", "WP-04", "WP-05", "WP-06", "WP-07", "WP-08", "WP-09", "WP-10", "WP-11", "WP-12", "WP-13", "WP-14", "WP-15", "WP-16", "WP-17"],
+  "status": "S02_CONDITIONAL_PASS",
+  "completedWorkPackages": ["WP-00", "WP-01", "WP-02", "WP-03", "WP-04", "WP-05", "WP-06", "WP-07", "WP-08", "WP-09", "WP-10", "WP-11", "WP-12", "WP-13", "WP-14", "WP-15"],
+  "currentWorkPackage": "WP-16",
+  "pendingWorkPackages": ["WP-16", "WP-17"],
   "changedFiles": ["package.json", "pnpm-workspace.yaml", "ownership.json", "tools/", "packages/s02-fixture/", "tests/", ".github/", "planning/sprints/S02/", "AGENTS.md"],
-  "executedTests": ["S00 gate and baseline audit", "OWN-01 through OWN-09 on temporary Git repositories"],
+  "executedTests": ["18 fresh-clone commands", "10 Vitest cases", "4 Chromium cases", "42 controlled infrastructure cases", "S01 legacy validators and Redocly"],
   "failedTests": [],
-  "blockedItems": ["Pinned runtime and package manager are being bootstrapped from integrity-verified packages"],
-  "nextExactCommand": "pnpm install --frozen-lockfile"
+  "blockedItems": ["Trusted PR protection bootstrap needs owner review", "Independent A6 temporary Git writes and loopback connections were denied", "Separate S01 contract quality remains unresolved"],
+  "nextExactCommand": "pwsh -NoProfile -File tools/run-s02-evidence.ps1 -Profile fresh-clone"
 }

@@ -1,0 +1,2 @@
+$ node tools/check-workspace.mjs
+Workspace verified: @madar/workspace, @madar/s02-fixture

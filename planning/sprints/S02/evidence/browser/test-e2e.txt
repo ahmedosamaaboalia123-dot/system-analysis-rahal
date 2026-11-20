@@ -1,0 +1,16 @@
+$ playwright test
+(node:8124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:24416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\s02-fixture.spec.ts:4:3 › S02 test fixture › renders the explicitly test-only page and increments with a pointer (591ms)
+  ok 2 [chromium] › tests\e2e\s02-fixture.spec.ts:18:3 › S02 test fixture › increment control is keyboard accessible (421ms)
+  ok 3 [chromium] › tests\e2e\s02-fixture.spec.ts:26:3 › S02 test fixture › unknown browser path provides a safe 404 response (297ms)
+  ok 4 [chromium] › tests\e2e\s02-fixture.spec.ts:32:3 › S02 test fixture › exposes test-only mock data and rejects unsupported methods safely (70ms)
+
+  4 passed (3.9s)
